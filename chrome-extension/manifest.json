@@ -1,7 +1,7 @@
 {
     "name": "Google Reverse Image Search From Clipboard",
     "version": "1.0.0",
-    "description": "aaaa",
+    "description": "Chrome extension that allows the user to paste an image from their clipboard into Google search to execute a reverse image search.",
     "content_scripts": [
         {
             "matches": [
