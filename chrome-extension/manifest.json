@@ -206,7 +206,7 @@
                 "*://www.google.co.zm/*",
                 "*://www.google.co.zw/*"
             ],
-            "js": ["background.js"]
+            "js": ["background.min.js"]
         }
     ],
     "manifest_version": 2
