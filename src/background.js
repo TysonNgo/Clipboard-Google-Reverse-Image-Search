@@ -23,6 +23,17 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		searchButton.style.cursor = 'pointer';
 		searchButton.style.opacity = '1';
 	}
+	function applyImgStyle(img){
+		img.style.position = 'absolute';
+		img.style.maxHeight = '100px';
+		img.style.maxWidth = '100px';
+		img.style.display = 'block';
+		img.style.margin = 'auto';
+		img.style.top = '0';
+		img.style.bottom = '0';
+		img.style.left = '0';
+		img.style.right = '0';
+	}
 	function createSearchDiv(){
 		if (document.getElementById('reverseSearchFromClipboard')){
 			return;
@@ -81,23 +92,11 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		var loadingSpinner = document.createElement('img');
 		loadingSpinner.id = 'reverseSearchFromClipboardImgLoading';
 		loadingSpinner.src = '/images/spin-24.gif';
-		loadingSpinner.style.position = 'absolute';
-		loadingSpinner.style.maxHeight = '100px';
-		loadingSpinner.style.maxWidth = '100px';
-		loadingSpinner.style.display = 'block';
-		loadingSpinner.style.margin = 'auto';
-		loadingSpinner.style.top = '0';
-		loadingSpinner.style.bottom = '0';
-		loadingSpinner.style.left = '0';
-		loadingSpinner.style.right = '0';
+		applyImgStyle(loadingSpinner);
 
 		var searchImage = document.createElement('img');
 		searchImage.id = 'reverseSearchFromClipboardImg';
-		searchImage.style.maxHeight = '100px';
-		searchImage.style.maxWidth = '100px';
-		searchImage.style.height = 'auto';
-		searchImage.style.width = '100%';
-		searchImage.style.display = 'block';
+		applyImgStyle(searchImage);
 
 		var searchButton = document.createElement('button');
 		searchButton.id = 'reverseSearchFromClipboardBtn';
@@ -168,7 +167,6 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 					document.getElementById('reverseSearchFromClipboardImgLoading').style.display = 'none';
 					searchImg.src = base64Image;
 					searchImg.style.display = 'block';
-					searchImg.style.height = 'auto';
 
 					var searchButton = document.getElementById('reverseSearchFromClipboardBtn');
 					enableButton();
