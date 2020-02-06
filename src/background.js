@@ -24,6 +24,14 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		searchButton.style.cursor = 'pointer';
 		searchButton.style.opacity = '1';
 	}
+	function applyImgContainerStyle(div){
+		div.style.width = '100px';
+		div.style.height = '100px';
+		div.style.display = 'block';
+		div.style.margin = '10px auto';
+		div.style.marginTop = '31px';
+		div.style.position = 'relative';
+	}
 	function applyImgStyle(img){
 		img.style.position = 'absolute';
 		img.style.maxHeight = '100px';
@@ -35,21 +43,55 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		img.style.left = '0';
 		img.style.right = '0';
 	}
+	function applySearchDivStyle(div){
+		/**
+		 * Styles the div that contains all the elements for the search div
+		 */
+		div.style.background = '#fff';
+		div.style.border = '1px solid #ccc';
+		div.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
+		div.style.boxSizing = 'border-box';
+		div.style.fontSize = '20px';
+		div.style.textAlign = 'center';
+		div.style.width = '100%';
+		div.style.height = '200px';
+		div.style.zIndex = 997;
+		div.style.position = 'relative';
+	}
+	function applySearchDivCloseStyle(div){
+		/**
+		 * Styles the top-right X button that closes the search div
+		 */
+		div.style.background = 'url(data:image/gif;base64,R0lGODlhFQAVAPAAAAAAAAAAACH5BAEAAAEALAAAAAAVABUAAAIsjI+py+0PH2Czgatupfho+AUhqHWROJ7laZSm1KXchtLZ2+KJ7bH+DwwKFQUAOw==) no-repeat';
+		div.style.cursor = 'pointer';
+		div.style.display = 'inline-block';
+		div.style.height = '16px';
+		div.style.marginBottom = '-2px';
+		div.style.position = 'absolute';
+		div.style.right = '15px';
+		div.style.top = '10px';
+		div.style.width = '16px';
+		div.style.zIndex = '312';
+	}
+	function applySearchButtonStyle(button){
+		button.style.borderRadius = '2px';
+		button.style.fontWeight = 'bold';
+		button.style.height = '27px';
+		button.style.lineHeight = '27px'
+		button.style.padding = '0 8px';
+		button.style.textAlign = 'center';
+		button.style.margin = 'auto';
+		button.style.width = '13em';
+		button.style.backgroundColor = '#4d90fe';
+		button.style.border = '1px solid #3079ed';
+		button.style.color = '#fff';
+	}
 	function createSearchDiv(){
 		if (document.getElementById('reverseSearchFromClipboard')){
 			return;
 		}
 		var searchDiv = document.createElement('div');
-		searchDiv.style.background = '#fff';
-		searchDiv.style.border = '1px solid #ccc';
-		searchDiv.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
-		searchDiv.style.boxSizing = 'border-box';
-		searchDiv.style.fontSize = '20px';
-		searchDiv.style.textAlign = 'center';
-		searchDiv.style.width = '100%';
-		searchDiv.style.height = '200px';
-		searchDiv.style.zIndex = 997;
-		searchDiv.style.position = 'relative';
+		applySearchDivStyle(searchDiv);
 		searchDiv.tabIndex = 0;
 		searchDiv.id = 'reverseSearchFromClipboard';
 		searchDiv.onkeydown = function(e){
@@ -66,16 +108,7 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		};
 
 		var searchDivClose = document.createElement('div');
-		searchDivClose.style.background = 'url(data:image/gif;base64,R0lGODlhFQAVAPAAAAAAAAAAACH5BAEAAAEALAAAAAAVABUAAAIsjI+py+0PH2Czgatupfho+AUhqHWROJ7laZSm1KXchtLZ2+KJ7bH+DwwKFQUAOw==) no-repeat';
-		searchDivClose.style.cursor = 'pointer';
-		searchDivClose.style.display = 'inline-block';
-		searchDivClose.style.height = '16px';
-		searchDivClose.style.marginBottom = '-2px';
-		searchDivClose.style.position = 'absolute';
-		searchDivClose.style.right = '15px';
-		searchDivClose.style.top = '10px';
-		searchDivClose.style.width = '16px';
-		searchDivClose.style.zIndex = '312';
+		applySearchDivCloseStyle(searchDivClose);
 		searchDivClose.onclick = closeSearchDiv;
 
 		var searchContainer = document.createElement('div');
@@ -83,12 +116,7 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		searchContainer.style.flexDirection = 'column';
 
 		var searchImageContainer = document.createElement('div');
-		searchImageContainer.style.width = '100px';
-		searchImageContainer.style.height = '100px';
-		searchImageContainer.style.display = 'block';
-		searchImageContainer.style.margin = '10px auto';
-		searchImageContainer.style.marginTop = '31px';
-		searchImageContainer.style.position = 'relative';
+		applyImgContainerStyle(searchImageContainer);
 
 		var loadingSpinner = document.createElement('img');
 		loadingSpinner.id = 'reverseSearchFromClipboardImgLoading';
@@ -102,17 +130,7 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		var searchButton = document.createElement('button');
 		searchButton.id = 'reverseSearchFromClipboardBtn';
 		searchButton.innerText = 'Search by image';
-		searchButton.style.borderRadius = '2px';
-		searchButton.style.fontWeight = 'bold';
-		searchButton.style.height = '27px';
-		searchButton.style.lineHeight = '27px'
-		searchButton.style.padding = '0 8px';
-		searchButton.style.textAlign = 'center';
-		searchButton.style.margin = 'auto';
-		searchButton.style.width = '13em';
-		searchButton.style.backgroundColor = '#4d90fe';
-		searchButton.style.border = '1px solid #3079ed';
-		searchButton.style.color = '#fff';
+		applySearchButtonStyle(searchButton);
 
 		searchImageContainer.append(loadingSpinner);
 		searchImageContainer.append(searchImage);
