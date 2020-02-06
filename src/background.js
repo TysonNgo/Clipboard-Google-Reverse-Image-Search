@@ -2,6 +2,7 @@
 
 document.querySelectorAll('input[type="text"]').forEach(function(input){
 	var controller = new AbortController();
+	var canPaste = true;
 	function closeSearchDiv(){
 		var searchDiv = document.getElementById('reverseSearchFromClipboard');
 		if (!searchDiv) return;
@@ -123,8 +124,10 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 		return searchDiv;
 	}
 	input.onpaste = function(clipboardEvent){
+		if (!canPaste) return;
 		var data = clipboardEvent.clipboardData;
 		if (data.files[0] && data.files[0].type === 'image/png'){
+			canPaste = false;
 			var fileReader = new FileReader();
 			fileReader.onload = function(){
 				var url = window.location.origin+'/searchbyimage/upload';
@@ -147,6 +150,8 @@ document.querySelectorAll('input[type="text"]').forEach(function(input){
 					searchDiv.focus();
 					disableButton();
 				}
+
+				canPaste = true;
 
 				var base64Image = fileReader.result;
 				var image_content = base64Image.replace(/^data:.*;base64,/, '');
