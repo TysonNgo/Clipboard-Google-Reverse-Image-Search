@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const minify = require('gulp-minify');
 
 gulp.task('ext-script', () => {
-	gulp.src('./src/background.js')
+	return gulp.src('./src/background.js')
 		.pipe(minify({
 			noSource: true,
 			ext: {
